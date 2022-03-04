@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatura</title>
+</head>
+<body>
+<main>
+    <form action="#" method="post" th:action="@{/temperature}" th:object="${temperature}">
+        <fieldset>
+            <legend>Nowa temperatura</legend>
+            <label>Opis
+                <input type="text" th:field="temperature.">
+            </label>
+        </fieldset>
+    </form>
+</main>
+</body>
+</html>
