@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TemperatureModel {
-    static List<TemperatureModel> lista = new ArrayList<TemperatureModel>();
+    static List<TemperatureModel> listOfTemperatures = new ArrayList<TemperatureModel>();
+    static List<String> listOfTowns = new ArrayList<String>();
 
     String townName;
     Integer temperature;
@@ -16,6 +17,7 @@ public class TemperatureModel {
     }
 
     public void setTownName(String townName) {
+        if (!listOfTowns.contains(townName)) listOfTowns.add(townName);
         this.townName = townName;
     }
 

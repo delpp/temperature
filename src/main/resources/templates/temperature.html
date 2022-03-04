@@ -7,11 +7,15 @@
 </head>
 <body>
 <main>
+    <!--/*@thymesVar id="temperature" type="com.gihub.delpp.temperature.model.TemperatureModel"*/-->
     <form action="#" method="post" th:action="@{/temperature}" th:object="${temperature}">
         <fieldset>
             <legend>Nowa temperatura</legend>
-            <label>Opis
-                <input type="text" th:field="temperature.">
+            <label>Miasto
+                <input type="text" th:field="*{townName}">
+            </label>
+            <label>Temperatura
+                <input type="text" th:field="*{temperature}">
             </label>
         </fieldset>
     </form>
