@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperatura</title>
+    <title>Dodawanie temperatury</title>
 </head>
 <body>
 <main>
+    <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+    <h1 th:if="${message != null}" th:text="${message}"></h1>
     <!--/*@thymesVar id="temperature" type="com.gihub.delpp.temperature.model.TemperatureModel"*/-->
-    <form action="#" method="post" th:action="@{/temperature}" th:object="${temperature}">
+    <form action="#" method="post" th:action="@{/addtemperature}" th:object="${temperature}">
         <fieldset>
             <legend>Nowa temperatura</legend>
             <label>Miasto
                 <input type="text" th:field="*{townName}">
             </label>
             <label>Temperatura
-                <input type="text" th:field="*{temperature}">
+                <input type="number" th:field="*{temperature}">
             </label>
+            <p>
+                <button type="submit">Dodaj</button>
+            </p>
         </fieldset>
+
     </form>
 </main>
 </body>
