@@ -10,7 +10,7 @@
     <!--/*@thymesVar id="temperatures" type="java.util.List<Average>"*/-->
     <dl th:each="temperature : ${temperatures}">
 
-        <dt> <label>Miasto: <label th:text="${temperature.getTown}"> </label></label></dt>
+        <dt> <label>Miejsce: <label th:text="${temperature.getTown}"> </label></label></dt>
         <dt> <label>średnia dobowa: <label th:text="${temperature.getRoundTheClockAverage}"></label></label> </dt>
         <dt> <label>średnia dzienna: <label th:text="${temperature.getDailyAverage}"></label></label> </dt>
         <dt> <label>średnia nocna: <label th:text="${temperature.getNightAverage}"></label></label> </dt>

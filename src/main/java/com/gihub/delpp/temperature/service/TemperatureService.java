@@ -18,6 +18,9 @@ public class TemperatureService {
 
     public synchronized List<Average> readAll(){
         List<Average> lista = new ArrayList<>();
+        List<Double> averagesFromAllTownsRoundTheClockAverage = new ArrayList<Double>();
+        List<Double> averagesFromAllTownsNightAverage = new ArrayList<Double>();
+        List<Double> averagesFromAllTownsDailyAverage = new ArrayList<Double>();
         TemperatureModel.towns
                 .forEach(y -> {
                     List<TemperatureModel> filteredList;
@@ -34,6 +37,7 @@ public class TemperatureService {
                                 .map(TemperatureModel::getTemperature)
                                 .mapToInt(i -> i)
                                 .average().getAsDouble();
+                        averagesFromAllTownsRoundTheClockAverage.add(average);
                         roundTheClockAverage = String.valueOf((int) average);
                     }
                     else{
@@ -50,6 +54,7 @@ public class TemperatureService {
                                 .map(TemperatureModel::getTemperature)
                                 .mapToInt(i -> i)
                                 .average().getAsDouble();
+                        averagesFromAllTownsDailyAverage.add(average);
                         dailyAverage = String.valueOf((int) average);
                     }
                     else {
@@ -70,6 +75,7 @@ public class TemperatureService {
                                 .map(TemperatureModel::getTemperature)
                                 .mapToInt(i -> i)
                                 .average().getAsDouble();
+                        averagesFromAllTownsNightAverage.add(average);
                         nightAverage = String.valueOf((int) average);
                     }
                     else {
@@ -78,6 +84,34 @@ public class TemperatureService {
 
                     lista.add(new Average(y, roundTheClockAverage, nightAverage , dailyAverage));
                 });
+
+        String totalRoundTheClockAverage = "brak danych";
+        String totalNightAverage = "brak danych";
+        String totalDailyAverage = "brak danych";
+
+        if (!averagesFromAllTownsRoundTheClockAverage.isEmpty())
+             totalRoundTheClockAverage = String.valueOf((int)
+                     averagesFromAllTownsRoundTheClockAverage.stream()
+                     .mapToDouble(i -> i)
+                     .average()
+                     .getAsDouble());
+
+        if (!averagesFromAllTownsNightAverage.isEmpty())
+            totalNightAverage = String.valueOf((int)
+                    averagesFromAllTownsNightAverage.stream()
+                    .mapToDouble(i -> i)
+                    .average()
+                    .getAsDouble());
+
+
+        if (!averagesFromAllTownsDailyAverage.isEmpty())
+            totalDailyAverage = String.valueOf((int)
+                    averagesFromAllTownsDailyAverage.stream()
+                    .mapToDouble(i -> i)
+                    .average()
+                    .getAsDouble());
+
+        lista.add(new Average("cała Polska", totalRoundTheClockAverage,totalNightAverage,totalDailyAverage));
         return lista;
     }
 
